@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Cutive&family=Gloria+Hallelujah&family=Londrina+Solid&family=Rubik:wght@300&display=swap");
+
+/*
+font-family: 'Cutive', serif;
+font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Londrina Solid', cursive;
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Cutive", serif;
+	background-color: black;
+}
+
+h1 {
+	color: white;
+	border: 5px solid white;
+	padding: 30px;
+	border-radius: 25px;
+	margin-top: 50px;
+}
+
+h1:hover {
+	-webkit-mask-image: linear-gradient(
+		-75deg,
+		rgba(0, 0, 0, 0.6) 30%,
+		#000 50%,
+		rgba(0, 0, 0, 0.6) 70%
+	);
+	-webkit-mask-size: 200%;
+	animation: shine 2s infinite;
+}
+
+@-webkit-keyframes shine {
+	from {
+		-webkit-mask-position: 150%;
+	}
+
+	to {
+		-webkit-mask-position: -50%;
+	}
+}
+a {
+	text-decoration: none;
+	font-family: sans-serif;
+	text-transform: lowercase;
+	font-size: 1em;
+}
+
+.menu {
+	margin-top: 20px;
+	background-color: #36096d;
+	background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+	height: 60px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	padding: 0 15px;
+	z-index: 2;
+	/* animation magic */
+	transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	border-radius: 15px;
+	border: 6px double white;
+}
+.menu i {
+	transition: all 0.2s ease-in-out;
+}
+.menu i:hover {
+	transform: scale(1.2);
+	@-webkit-keyframes {
+		0%,
+		50%,
+		100% {
+			opacity: 1;
+		}
+		25%,
+		75% {
+			opacity: 0;
+		}
+	}
+	@keyframes flash {
+		0%,
+		50%,
+		100% {
+			opacity: 1;
+		}
+		25%,
+		75% {
+			opacity: 0;
+		}
+	}
+}
+.menu .fa-search:active {
+	transform: scale(1);
+	padding: 0px;
+	border-bottom: 0px solid white;
+}
+.fa-bell:hover {
+	animation: shake 0.5s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes fa-bell {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
+}
+
+.menu i:active {
+	opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	padding-bottom: 5px;
+	border-bottom: 2px solid white;
+}
+.menu i:active:after {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	border-bottom: 2px solid white;
+}
+.shrink {
+	height: 50px;
+}
+
+.navigation-search-container {
+	position: relative;
+}
+
+.navigation-search-container input {
+	background-color: #fafafa;
+	padding: 3px 20px;
+	padding-left: 25px;
+	height: 20px;
+	border: 1px solid blue;
+	border-radius: 3px;
+	font-size: 11px;
+}
+
+.navigation-search-container .fa-search {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 11px;
+	color: #551a8b;
+}
+
+.menu i {
+	font-size: 22px;
+	color: white;
+}
+.notification-bubble-wrapper {
+	position: relative;
+	top: -30px;
+	left: 17px;
+}
+
+.notification-bubble {
+	position: absolute;
+	min-width: 20px;
+	min-height: 20px;
+	border-radius: 50%;
+	background: #ff2c74;
+	color: red;
+	text-align: center;
+	font-size: 14px;
+	padding: 5px 5px 3px;
+	font-family: "Cutive", serif;
+	font-weight: 500;
+	border: 1px solid red;
+}
+
+.notification-bubble span {
+	color: white;
+	font-family: "Rubik", sans-serif;
+}
+
+@media screen and (min-width: 600px) {
+	h1 {
+		font-size: 25px;
+	}
+}
+
+@media screen and (max-width: 420px) {
+	h1 {
+		font-size: 10px;
+	}
+	.navigation-search-container {
+		display: none;
+	}
+}

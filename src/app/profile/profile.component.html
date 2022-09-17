@@ -1,0 +1,155 @@
+
+<button class="btn btn-primary" (click)="openAddProductModal()">add Product</button>
+<button class="btn btn-danger" (click)="logOut()">Log Out</button>
+<div class="container mt-5">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search..."
+      [ngModel]="searchTerm"
+      (input)="search($any($event.target).value)"
+    />
+  </div></div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">nom</th>
+        <th scope="col">prix</th>
+        <th scope="col">categorie</th>
+        <th scope="col">Promotions</th>
+        <th scope="col">quantite</th>
+        <th scope="col">image</th>
+        <th scope="col">edits</th>
+        
+
+      </tr>
+    </thead>
+    <tbody>
+      
+       <br>
+      <tr *ngFor='let product of products '>
+        <td>{{product.id}}</td>
+        <td>{{product.nom}}</td>
+        <td>{{product.prix}} DT</td>
+        <td>{{product.categorie}}</td>
+        <td>{{product.promotions}} %</td>
+        <td>
+            <span *ngIf="product.quantite==0" class="badge badge-danger red-tag">Out of stock</span>
+            <span *ngIf="product.quantite">{{product.quantite}}</span>
+        </td>
+        <td><img [width]="80" [height]="100" src="{{product.image}}" alt="" (click)="openImage(product.image)" /></td>
+
+
+        <td>
+            <button class="btn btn-info" (click)="openUpdateProductModal(product)"><i class="fa-solid fa-pen-to-square"></i>Update</button>
+            <button class="btn btn-danger" (click)="openDeleteProductModal(product.id)"><i class="fa-solid fa-trash"></i>Delete</button>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <div id="modal-add-product-form" class="modal-add-product-form modal fade" >
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2>{{title}}</h2>
+              </div>
+              
+              <div class="modal-body">
+                <form [formGroup]="form" >
+                    <div class="form-group">
+                      <label >nom</label>
+                      <input type="text"formControlName="nom" [ngModel]="product.nom" class="form-control"  >
+                    </div>
+                    
+                    <div class="form-group">
+                      <label > prix </label>
+                      <input [ngModel]="product.prix" type="text" formControlName="prix" class="form-control" id="pwd">
+                    </div>
+                    <div class="form-group">
+                        <label  > categorie </label>
+                        <input [ngModel]="product.categorie" type="text"formControlName="categorie" class="form-control" id="pwd">
+                      </div>
+                      <div class="form-group">
+                        <label > promotions </label>
+                        <input  type="text" [ngModel]="product.promotions" formControlName="promotions"class="form-control" id="pwd">
+                      </div>
+                      <div class="form-group">
+                        <label >Quantite</label>
+                        <input type="text"formControlName="quantite" [ngModel]="product.quantite" class="form-control"  >
+                      </div>
+                      <div class="form-group">
+                        <label >Image</label>
+                        <input type="text"formControlName="image" [ngModel]="product.image" class="form-control"  >
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button *ngIf="title == 'Add Product'" class="btn btn-primary" (click)="Add()" >Add</button>
+                  <button *ngIf="title == 'Update Product'" class="btn btn-primary" (click)="updateProduct()" >Update</button>
+                  <button class="btn btn-danger" (click)="closeModal('.modal-add-product-form')">Close</button>
+              </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+  <div id="delete-product" class="delete-product modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Are you sure to delete ?</h2>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" (click)="deleteProduct()" >Yes</button>
+                <button class="btn btn-danger" (click)="closeModal('.delete-product')">No</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<div id="image" class="image modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+                <img [width]="500" [height]="450" src="{{selectedImage}}" alt=""/>
+ 
+            
+            
+
+        </div>
+
+    </div>
+
+</div>
+<div id="login" class="login modal fade" >
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>You have to login first</h2>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-primary" (click)="redirectToLogin()" >Login</button>
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
